@@ -5,17 +5,17 @@ on:
     branches:
       - lesson-5
 jobs:
-  function_test:
+  security_test:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: frontend
+        working-directory: backend
     steps:
-      - uses: actions/checkout@v7.0.1
-      - run: npm install
-      - name: Run functional tests
-        run: npm test -- --coverage --watchAll=false
+      - name: PyCharm Python Security Scanner
+        uses: tonybaloney/pycharm-security@1.25.1
+
   unit_test:
+    needs: [security_test]
     runs-on: ubuntu-latest
     defaults:
       run:
