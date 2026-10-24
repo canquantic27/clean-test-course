@@ -5,6 +5,16 @@ on:
     branches:
       - lesson-5
 jobs:
+  function_test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - run: npm install
+      - name: Run functional tests
+        run: npm test -- --coverage --watchAll=false
   unit_test:
     runs-on: ubuntu-latest
     defaults:
@@ -25,7 +35,7 @@ jobs:
           coverage run -m --source=./hangry_api pytest
           coverage report
   deploy:
-    needs: [unit_test]
+    needs: [function_test, unit_test]]
     runs-on: ubuntu-latest
     defaults:
       run:
