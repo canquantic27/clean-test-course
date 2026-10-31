@@ -5,7 +5,6 @@ on:
     branches:
       - lesson-5
 jobs:
-<<<<<<< HEAD
   security_test:
     runs-on: ubuntu-latest
     defaults:
@@ -18,9 +17,6 @@ jobs:
         uses: tonybaloney/pycharm-security@1.25.1
   unit_test:
     needs: [security_test]
-=======
-  unit_test:
->>>>>>> refs/remotes/origin/lesson-5
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -40,23 +36,16 @@ jobs:
           coverage run -m --source=./hangry_api pytest
           coverage report
   deploy:
-<<<<<<< HEAD
-    needs: [unit_test, security_test]
-=======
     needs: [unit_test]
->>>>>>> refs/remotes/origin/lesson-5
     runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: backend
     steps:
       - uses: actions/checkout@v7.0.1
-<<<<<<< HEAD
       - name: Disable Debug
         run: |
           sed -i 's/DEBUG = True/DEBUG = False/g' hangry_api/hangry_api/settings.py
-=======
->>>>>>> refs/remotes/origin/lesson-5
       - name: Generate deployment package
         run: zip -r deploy.zip . -x '*.git*'
       - name: '**PLACEHOLDER** Deploy to Elastic Beanstalk'
