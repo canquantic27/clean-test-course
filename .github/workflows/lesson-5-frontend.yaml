@@ -5,6 +5,7 @@ on:
     branches:
       - lesson-5
 jobs:
+<<<<<<< HEAD
   function_test:
     runs-on: ubuntu-latest
     defaults:
@@ -15,15 +16,31 @@ jobs:
       - run: npm install
       - name: Run functional tests
         run: npm test -- --coverage --watchAll=false
+=======
+#  function_test: (commented out to save learner time)
+#    runs-on: ubuntu-latest
+#    defaults:
+#      run:
+#        working-directory: frontend
+#    steps:
+#      - uses: actions/checkout@v7.0.1
+#      - run: npm install
+#      - name: Run functional tests
+#        run: npm test -- --coverage --watchAll=false
+>>>>>>> refs/remotes/origin/lesson-5
   deploy:
-    needs: [function_test]
+#    needs: [function_test] (normally you'd not deploy until functional tests were complete)
     runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: frontend
     steps:
       - uses: actions/checkout@v7.0.1
+<<<<<<< HEAD
       - run: npm install && npm run build
+=======
+#      - run: npm install && npm run build (commented out to save learner time)
+>>>>>>> refs/remotes/origin/lesson-5
       - name: Generate deployment package
         run: zip -r deploy.zip build Dockerfile
       - name: '**PLACEHOLDER** Deploy to Elastic Beanstalk'

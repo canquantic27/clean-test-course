@@ -5,8 +5,14 @@ import Home from '.';
 
 describe('Test Home', () => {
   afterEach(() => {
+<<<<<<< HEAD
       jest.restoreAllMocks();
   });
+=======
+    jest.restoreAllMocks();
+  });
+
+>>>>>>> refs/remotes/origin/lesson-5
   test('Test Render', async () => {
     //Arrange: Setup the mock API
     //Listen for any GET requests using the axios module
@@ -58,11 +64,28 @@ describe('Test Home', () => {
 
     //Act: Call the Home page
     render(<Home />);
+<<<<<<< HEAD
 
+=======
+    //Assert: Check the values are NOT in the rendered Home page.  This is because the mocked status value is set to fail.
+    expect(screen.queryByTestId(/category-item/i)).not.toBeInTheDocument();
+  });
+
+  //Copied "Test Render"
+  test('Test Integration Render', async () => {
+    //Deleted the mock calls.  There is no Arrange for this test since this will access the shared servers.
+    //Act: Call the Home page
+    render(<Home />);
+>>>>>>> refs/remotes/origin/lesson-5
     //Assert: Check the values in the rendered Home page.
     //There should be 2 categories as defined in the mock response above
     expect(await screen.findAllByTestId(/category-item/i)).toHaveLength(2);
     //The word Appeateasers should be in there as defined in the mock response above.
     expect(await screen.findByText('Appeteasers')).toBeInTheDocument();
+<<<<<<< HEAD
   })
 })
+=======
+  });
+});
+>>>>>>> refs/remotes/origin/lesson-5
